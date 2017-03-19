@@ -10,6 +10,27 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'fzzylogic/Vundle.vim'
 
+" VIM monokai color scheme - supports vim-gtk (gvim)
+Plugin 'crusoexia/vim-monokai'
+
+" :Search <term> to highlight all or :SearchReset to clear
+" Plugin 'vim-scripts/MultipleSearch'
+
+" Multi-cursor plugin. Visual mode (v) tap Ctrl-n for each new cursor starting
+" at beginnging of words that match the current one.
+" ctrl-p - go one step back
+" ctrl-x - don't apply cursor to current match
+" shift-I - enter edit mode so you can add text at these cursors
+Plugin 'terryma/vim-multiple-cursors'
+
+" Cloned from http://vim.wikia.com/wiki/Auto_highlight_current_word_when_idle
+" For easy install with vundle.
+Plugin 'fzzylogic/vim-auto-highlight.vim'
+
+" Nice and fast file-finder for VIM
+" However, it requires ruby..
+" Plugin 'wincent/command-t'
+
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -28,13 +49,6 @@ Plugin 'fzzylogic/Vundle.vim'
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 " Plugin 'Enhanced-Javascript-syntax'
 
-" VIM monokai color scheme - supports vim-gtk
-Plugin 'crusoexia/vim-monokai'
-
-Plugin 'MultipleSearch2.vim'
-" Nice and fast file-finder for VIM
-" However, it requires ruby..
-" Plugin 'wincent/command-t'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
