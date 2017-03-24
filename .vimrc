@@ -2,7 +2,7 @@ set nocompatible              " disable vi compatibility (required by Vundle)
 filetype off                  " force reloading *after* Vundle loaded (required by Vundle)
 
 " ----------------------------------------------------------------------
-" Vundle things 
+" Vundle things
 " ----------------------------------------------------------------------
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -36,7 +36,7 @@ Plugin 'mbbill/undotree'
 " Check :help ctrlp-commands and :help ctrlp-extensions for other commands.
 Plugin 'ctrlpvim/ctrlp.vim'
 
-" Install ack plugin that uses ack or silver surfer to search 
+" Install ack plugin that uses ack or silver surfer to search
 " through source code for specific lines
 " Usage
 " :Ack [options] {pattern} [{directories}]
@@ -44,6 +44,33 @@ Plugin 'ctrlpvim/ctrlp.vim'
 " Use \\\ to escape chars like #
 " Use :Ack! to not jump to first result automatically
 Plugin 'mileszs/ack.vim'
+
+" Good javascript syntax support
+" Might be slow, disable unless needed.
+Plugin 'pangloss/vim-javascript.git'
+
+" Good python syntax folding plugin
+" However, it is very slow.. , so disabling for now.
+" Indexed based folding works fine for my needs and is much faster.
+" Plugin 'tmhedberg/SimpylFold'
+
+" Show number of matches when doing searches
+" This can be done manually using - :%s/pattern//gn
+" However this plugin will do it for any vim search method.
+Plugin 'henrik/vim-indexed-search'
+
+Plugin 'bitc/vim-bad-whitespace'
+
+" syntax checking for many languages on save
+" For python, requires flake8 or pylint (i prefer pylint)
+" sudo -H pip3 install pylint
+" For javascript, use: jshint (haven't tried eslint, maybe good too. jslint is too strict)
+" sudo -H npm install -g jshint
+Plugin 'vim-syntastic/syntastic'
+
+" Valloric : Code completion for many languages
+" Pretty slow..
+Plugin 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -63,16 +90,64 @@ filetype plugin indent on    " required
 "
 
 " ----------------------------------------------------------------------
-" Custom things 
+" Custom things
 " ----------------------------------------------------------------------
 syntax enable           " enable syntax processing
-colorscheme monokai     " use this colorscheme. It is loaded by Vundle.
 
-" These options ensure no actual tabs are ever used. Useful for Python / Bash
-" scripting.
+" enable 256 color mode so editing in the terminal isn't
+" quite so annoying.
+set t_Co=256
+
+" This is how one might use two colorschemes.
+" However, i'm using monokai for gui and terminal.
+" if has('gui_running')
+colorscheme monokai     " loaded by Vundle
+"    else
+"        colorscheme zenburn
+"    endif
+
+" ensure syntastic uses pylint and jshint by default
+let g:syntastic_python3_checkers = ['pylint']
+let g:syntastic_javascript_checkers = ['jshint']
+
+" recommended syntastic settings (i.e. waterwings)
+" remove or modify as needed
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+
+" must indicate python version your vim was compiled for.. else ycm will
+" crash. When using venv, indicate name of python binary that matches the
+" one vim was compiled for. Which basically means you can only use it when
+" venv is activated if the non-activated python binary has a different name..
+let g:ycm_server_python_interpreter = 'python'
+
+
+" Applies to anything edited in vim.
+" These options ensure no actual tabs are ever used. Useful for Python / Bash scripting.
 set tabstop=4           " number of visual spaces per TAB
 set softtabstop=4       " number of spaces in tab when editing (when tab is pressed)
+set shiftwidth=4        " how many spaces to insert when auto indenting (< > , << >>)
 set expandtab           " tabs are spaces
+
+set colorcolumn=120     " show visual column at 120 char mark
+" color can be set with below with std vim (but monokai theme already does this)
+" highlight ColorColumn ctermbg=0 guibg=lightgrey
+
+" Applies only to python files. PEP8 settings.
+" au BufNewFile,BufRead *.py
+"     \ set tabstop=4
+"     \ set softtabstop=4
+"     \ set shiftwidth=4
+"     \ set textwidth=79
+"     \ set expandtab
+"     \ set autoindent
+"     \ set fileformat=unix
 
 set number              " show line numbers
 set cursorline          " highlight current line
@@ -89,7 +164,8 @@ set hlsearch            " highlight matches
 
 set foldenable          " enable folding
 set foldlevelstart=10   " open most folds by default
-set foldnestmax=10      " 10 nested fold max
+" set foldnest higher to support more fold nesting. 1 is often all one needs.
+set foldnestmax=1      " 1 nested fold max
 set nowrap              " disables linewrap (enable with :set wrap!)
 
 
@@ -99,24 +175,28 @@ nnoremap <space> za
 " fold based on indent level
 " or: marker, manual, expr, syntax, diff
 " help: foldmethod for more
-set foldmethod=indent 
+set foldmethod=indent
+set encoding=utf-8      " set's uft-8 as the default encoding.
+set ff=unix             " unix file format is the default. plays nicely with git.
 
 " visually select last inserted text
 nnoremap gV `[v`]
 
 " toggles visual undo tree with F5
-" It shows where you are visually on when using 'u' or ctrl-r to undo or redo
+" It shows where you are visually when using 'u' or ctrl-r to undo or redo
 " To change between branches on the tree, use :earlier or :later to tell vim
-" which history branch you'd like to traverse.
+" which history branch you'd like to traverse. In gui mode you may simply
+" click on the history point you want.
 nnoremap <F5> :UndotreeToggle<cr>
 
-" put all persistent undo files in the same place
+" For Undotree : put all persistent undo files in the same place
 if has("persistent_undo")
     set undodir=~/.undodir/
     set undofile
 endif
 
 " Use silver surfer instead of ack with ack.vim
+" Silver surfer is for fuzzy file search
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
