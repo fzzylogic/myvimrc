@@ -72,6 +72,23 @@ Plugin 'vim-syntastic/syntastic'
 " Pretty slow..
 Plugin 'Valloric/YouCompleteMe'
 
+" nicer file manager than netrw
+Plugin 'scrooloose/nerdtree'
+
+" using vim tabs:
+" Use tabnew, tabnext, tabprev, tabfirst, tablast
+
+" use just one nerdtree
+Plugin 'jistr/vim-nerdtree-tabs'
+
+Plugin 'tpope/vim-fugitive'         " git integregation
+
+" nice display
+" Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+
+" nice footer display, lighter than powerline
+Plugin 'vim-airline/vim-airline'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -127,6 +144,9 @@ let g:syntastic_check_on_wq = 0
 " venv is activated if the non-activated python binary has a different name..
 let g:ycm_server_python_interpreter = 'python'
 
+let g:nerdtree_tabs_open_on_gui_startup=2       " only opens when opening a directory
+
+set laststatus=2                                " so airline plugin status bar is always visible
 
 " Applies to anything edited in vim.
 " These options ensure no actual tabs are ever used. Useful for Python / Bash scripting.
@@ -188,6 +208,13 @@ nnoremap gV `[v`]
 " which history branch you'd like to traverse. In gui mode you may simply
 " click on the history point you want.
 nnoremap <F5> :UndotreeToggle<cr>
+nnoremap <F6> :NERDTreeToggle<cr>
+
+nnoremap tn :tabnew<Space>
+nnoremap tl :tabnext<cr>
+nnoremap th :tabprev<cr>
+nnoremap tj :tabfirst<cr>
+nnoremap tk :tablast<cr>
 
 " For Undotree : put all persistent undo files in the same place
 if has("persistent_undo")
