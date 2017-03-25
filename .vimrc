@@ -11,6 +11,8 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
+" To install vundle the first time use:
+" $ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 Plugin 'fzzylogic/Vundle.vim'
 
 " VIM monokai color scheme - supports vim-gtk (gvim)
@@ -107,7 +109,7 @@ filetype plugin indent on    " required
 "
 
 " ----------------------------------------------------------------------
-" Custom things
+" End of Vundle things
 " ----------------------------------------------------------------------
 syntax enable           " enable syntax processing
 
