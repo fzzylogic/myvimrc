@@ -68,7 +68,8 @@ Plugin 'bitc/vim-bad-whitespace'
 " sudo -H pip3 install pylint
 " For javascript, use: jshint (haven't tried eslint, maybe good too. jslint is too strict)
 " sudo -H npm install -g jshint
-Plugin 'vim-syntastic/syntastic'
+" Slow on older hardware, disabled for now.
+" Plugin 'vim-syntastic/syntastic'
 
 " Valloric : Code completion for many languages
 " Pretty slow..
@@ -126,8 +127,9 @@ colorscheme monokai     " loaded by Vundle
 "    endif
 
 " ensure syntastic uses pylint and jshint by default
-let g:syntastic_python3_checkers = ['pylint']
-let g:syntastic_javascript_checkers = ['jshint']
+" disabled pylint for now as it's too slow on older hardware.
+" let g:syntastic_python3_checkers = ['pylint']
+" let g:syntastic_javascript_checkers = ['jshint']
 
 " recommended syntastic settings (i.e. waterwings)
 " remove or modify as needed
@@ -144,7 +146,7 @@ let g:syntastic_check_on_wq = 0
 " crash. When using venv, indicate name of python binary that matches the
 " one vim was compiled for. Which basically means you can only use it when
 " venv is activated if the non-activated python binary has a different name..
-let g:ycm_server_python_interpreter = 'python'
+let g:ycm_server_python_interpreter = 'python2'
 
 let g:nerdtree_tabs_open_on_gui_startup=2       " only opens when opening a directory
 
@@ -229,4 +231,9 @@ endif
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+
+" hide or show menubar, toolbar and vertical scrollbar
+nnoremap <S-F1> :if &go=~#'m' <Bar>set go-=m <Bar>else <Bar>set go+=m <Bar>endif<CR>
+nnoremap <S-F2> :if &go=~#'T' <Bar>set go-=T <Bar>else <Bar>set go+=T <Bar>endif<CR>
+nnoremap <S-F3> :if &go=~#'r' <Bar>set go-=r <Bar>else <Bar>set go+=r <Bar>endif<CR>
 
