@@ -158,6 +158,7 @@ set tabstop=4           " number of visual spaces per TAB
 set softtabstop=4       " number of spaces in tab when editing (when tab is pressed)
 set shiftwidth=4        " how many spaces to insert when auto indenting (< > , << >>)
 set expandtab           " tabs are spaces
+set linespace=5         " ensure underscores are visible
 
 set colorcolumn=120     " show visual column at 120 char mark
 " color can be set with below with std vim (but monokai theme already does this)
