@@ -234,6 +234,9 @@ if executable('ag')
 endif
 
 " hide or show menubar, toolbar and vertical scrollbar
+" hide icon toolbar by default
+set go-=T
+
 nnoremap <S-F1> :if &go=~#'m' <Bar>set go-=m <Bar>else <Bar>set go+=m <Bar>endif<CR>
 nnoremap <S-F2> :if &go=~#'T' <Bar>set go-=T <Bar>else <Bar>set go+=T <Bar>endif<CR>
 nnoremap <S-F3> :if &go=~#'r' <Bar>set go-=r <Bar>else <Bar>set go+=r <Bar>endif<CR>
