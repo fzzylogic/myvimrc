@@ -92,6 +92,16 @@ Plugin 'tpope/vim-fugitive'         " git integregation
 " nice footer display, lighter than powerline
 Plugin 'vim-airline/vim-airline'
 
+" match closing tags
+" This has a bug where it doesn't correctly match to the last tag
+" in some cases. For example, with nested tags, it will match the
+" closing tag of the nested tag, instead of the outer tag.
+" Using matchit below, we can find closing tags anywhere using %
+" Plugin 'https://github.com/gregsexton/MatchTag'
+
+" so % will jump to closing html / xml tags also
+Plugin 'https://github.com/tmhedberg/matchit'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
