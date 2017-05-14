@@ -251,3 +251,10 @@ nnoremap <S-F1> :if &go=~#'m' <Bar>set go-=m <Bar>else <Bar>set go+=m <Bar>endif
 nnoremap <S-F2> :if &go=~#'T' <Bar>set go-=T <Bar>else <Bar>set go+=T <Bar>endif<CR>
 nnoremap <S-F3> :if &go=~#'r' <Bar>set go-=r <Bar>else <Bar>set go+=r <Bar>endif<CR>
 
+" make window full screen.
+:set lines=999 columns=999
+
+" Since ALT-X happens to do this on most platforms..
+" au GUIEnter * simalt ~x
+
+
