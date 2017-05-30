@@ -200,7 +200,7 @@ set hlsearch            " highlight matches
 set foldenable          " enable folding
 set foldlevelstart=10   " open most folds by default
 " set foldnest higher to support more fold nesting. 1 is often all one needs.
-set foldnestmax=1      " 1 nested fold max
+set foldnestmax=2      " 1 nested fold max
 set nowrap              " disables linewrap (enable with :set wrap!)
 
 
@@ -231,6 +231,9 @@ nnoremap th :tabprev<cr>
 nnoremap tj :tabfirst<cr>
 nnoremap tk :tablast<cr>
 
+" to strip all trailing whitespace
+nnoremap strip :%s/\s\+$//e
+
 " For Undotree : put all persistent undo files in the same place
 if has("persistent_undo")
     set undodir=~/.undodir/
@@ -257,4 +260,6 @@ nnoremap <S-F3> :if &go=~#'r' <Bar>set go-=r <Bar>else <Bar>set go+=r <Bar>endif
 " Since ALT-X happens to do this on most platforms..
 " au GUIEnter * simalt ~x
 
-
+" show tabs visually
+set list
+set listchars=tab:>-
