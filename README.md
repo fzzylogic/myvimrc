@@ -9,9 +9,9 @@ Backup of vimrc
 
   `$ git clone https://github.com/fzzylogic/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
   
-- Compile YouCompleteMe if you want code completion. Instructions at https://github.com/Valloric/YouCompleteMe.
+- Compile YouCompleteMe if you want code completion. [Instructions on github](https://github.com/Valloric/YouCompleteMe).
 
-- Install the silver surfer if you have lots of code to search
+- Install the [silver surfer](https://github.com/ggreer/the_silver_searcher) if you have lots of code to search
 
   `$ apt-get install silversearcher-ag`
 
