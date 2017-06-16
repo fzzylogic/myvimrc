@@ -102,6 +102,12 @@ Plugin 'vim-airline/vim-airline'
 " so % will jump to closing html / xml tags also
 Plugin 'https://github.com/tmhedberg/matchit'
 
+" Ultisnips code snippet plugin
+Plugin 'SirVer/ultisnips'
+
+" Snippets are separated from the ultisnips engine.
+Plugin 'honza/vim-snippets'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -123,6 +129,14 @@ filetype plugin indent on    " required
 " End of Vundle things
 " ----------------------------------------------------------------------
 syntax enable           " enable syntax processing
+
+" some vim-snippets things: Trigger configuration.
+" Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+" If you want :UltiSnipsEdit to split your window.
+" let g:UltiSnipsEditSplit="vertical"
 
 " enable 256 color mode so editing in the terminal isn't
 " quite so annoying.
