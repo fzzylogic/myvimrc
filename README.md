@@ -4,6 +4,8 @@ Backup of vimrc
 - Install gvim if you want fancies
 
   `$ sudo apt-get install vim-gtk`
+
+Or if you're on Windows, get the 64bit version [here](https://bintray.com/micbou/generic/vim).
   
 - Install vundle for plugin management (forked it and just added --depth 1 for speed). Maybe one day github will offer auto-pull.
 
