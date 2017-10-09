@@ -13,7 +13,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 " To install vundle the first time use:
 " $ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-Plugin 'fzzylogic/Vundle.vim'
+" Plugin 'fzzylogic/Vundle.vim'
 
 " VIM monokai color scheme - supports vim-gtk (gvim)
 Plugin 'crusoexia/vim-monokai'
@@ -45,7 +45,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 " e.g. :Ack function_name
 " Use \\\ to escape chars like #
 " Use :Ack! to not jump to first result automatically
-Plugin 'mileszs/ack.vim'
+" Plugin 'mileszs/ack.vim'
 
 " Good javascript syntax support
 " Might be slow, disable unless needed.
@@ -130,6 +130,16 @@ filetype plugin indent on    " required
 " ----------------------------------------------------------------------
 syntax enable           " enable syntax processing
 
+" Set gui fonts for linux or windows
+if has('gui_running')
+  " set guioptions-=T  " no toolbar
+  if has('gui_win32')
+    set guifont=DejaVu_Sans_Mono:h10:cANSI
+  else
+    set guifont=DejaVu\ Sans\ Mono\ 10
+  endif
+endif
+
 " some vim-snippets things: Trigger configuration.
 " Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-j>"
@@ -170,7 +180,7 @@ let g:syntastic_check_on_wq = 0
 " crash. When using venv, indicate name of python binary that matches the
 " one vim was compiled for. Which basically means you can only use it when
 " venv is activated if the non-activated python binary has a different name..
-let g:ycm_server_python_interpreter = 'python2'
+let g:ycm_server_python_interpreter = 'python'
 
 let g:nerdtree_tabs_open_on_gui_startup=2       " only opens when opening a directory
 
@@ -256,9 +266,9 @@ endif
 
 " Use silver surfer instead of ack with ack.vim
 " Silver surfer is for fuzzy file search
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
+" if executable('ag')
+"   let g:ackprg = 'ag --vimgrep'
+" endif
 
 " hide or show menubar, toolbar and vertical scrollbar
 " hide icon toolbar by default
