@@ -17,6 +17,9 @@ Or if you're on Windows, get the 64bit version [here](https://bintray.com/micbou
 
   `$ apt-get install silversearcher-ag`
 
+- Install SQL format module for python
+  `$ pip install sqlformat
+
 - Launch vim/gvim
 
 - Run vundle to download the plugins

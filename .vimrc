@@ -108,6 +108,15 @@ Plugin 'SirVer/ultisnips'
 " Snippets are separated from the ultisnips engine.
 Plugin 'honza/vim-snippets'
 
+" To prettify SQL using sqlparse
+" :w would format automatically, but we've disable this further down.
+" rather use :SQLFmt [files] to execute directly
+" If you're on windows you may need to remove ^M with:
+" :%s/<Ctrl-V><Ctrl-M>//g
+" You can't just type ^ and M, but need to use those key chords to insert it..
+" Settings for the plugin are specified further down..
+Plugin 'b4b4r07/vim-sqlfmt'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -130,6 +139,10 @@ filetype plugin indent on    " required
 " ----------------------------------------------------------------------
 syntax enable           " enable syntax processing
 
+" fix backspace issue on Windows
+set backspace=2
+set backspace=indent,eol,start
+
 " Set gui fonts for linux or windows
 if has('gui_running')
   " set guioptions-=T  " no toolbar
@@ -147,6 +160,12 @@ let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " If you want :UltiSnipsEdit to split your window.
 " let g:UltiSnipsEditSplit="vertical"
+
+" Settings for sqlfmt plugin
+let g:sqlfmt_command = "sqlformat"
+let g:sqlfmt_options = "-r -k upper"
+" disable auto format on save..
+let g:sqlfmt_auto = 0
 
 " enable 256 color mode so editing in the terminal isn't
 " quite so annoying.
