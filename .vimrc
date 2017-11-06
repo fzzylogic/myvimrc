@@ -117,6 +117,12 @@ Plugin 'honza/vim-snippets'
 " Settings for the plugin are specified further down..
 Plugin 'b4b4r07/vim-sqlfmt'
 
+" Vue.js syntax highlighter
+" If you ever need to force one extension to by syntax highlighted like
+" another, use e.g.:
+" au BufReadPost *.vue set syntax=html
+Plugin 'posva/vim-vue'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
