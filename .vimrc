@@ -61,6 +61,12 @@ Plugin 'pangloss/vim-javascript.git'
 " However this plugin will do it for any vim search method.
 Plugin 'henrik/vim-indexed-search'
 
+" shows trailing whitespace in red
+"
+" You can erase the bad whitespace with the command |EraseBadWhitespace|
+"
+" You can manually toggle the highlighting for the current buffer with the
+" commands |ShowBadWhitespace| |HideBadWhitespace| |ToggleBadWhitespace|
 Plugin 'bitc/vim-bad-whitespace'
 
 " syntax checking for many languages on save
@@ -118,10 +124,39 @@ Plugin 'honza/vim-snippets'
 Plugin 'b4b4r07/vim-sqlfmt'
 
 " Vue.js syntax highlighter
-" If you ever need to force one extension to by syntax highlighted like
+" If you ever need to force one extension to be syntax highlighted like
 " another, use e.g.:
 " au BufReadPost *.vue set syntax=html
 Plugin 'posva/vim-vue'
+
+" indent guides
+Plugin 'nathanaelkane/vim-indent-guides'
+
+" sparkup, for rapid html entry
+" press <C-E> whilst in insert mode to expand to HTML
+Plugin 'rstacruz/sparkup'
+
+" surround - for *surrounding* things
+" Usage: cs"' *changes* "hello" to 'hello'
+" cs'<q> changes 'hello' to <q>hello</q>
+" cst" changes <q>hello</q> to "hello"
+" ds" to *delete* delimiters leaving just hello
+" With cursor on hello, ysiw] to add brackets
+" Note that [ would add a space after the brackets whereas ] puts no space
+" yss) to wrap *entire line* in brackets
+" works in visual mode too
+Plugin 'tpope/vim-surround'
+
+" Repeat allows you to use . to repeat the actions of supporting plugins
+" Default vim behavior is to only repeat internal operations
+" Using this specifically to repeat 'sorround' plugin operations with .
+Plugin 'tpope/vim-repeat'
+
+" Bootstrap3 snippets - supports UltiSnips
+Plugin 'chrisgillis/vim-bootstrap3-snippets'
+
+" CSS3 syntax snippets
+Plugin 'lepture/vim-css'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -172,6 +207,12 @@ let g:sqlfmt_command = "sqlformat"
 let g:sqlfmt_options = "-r -k upper"
 " disable auto format on save..
 let g:sqlfmt_auto = 0
+
+" indent guide settings
+" type ig to toggle
+let g:indent_guides_enable_on_vim_startup = 1
+nnoremap ig :IndentGuidesToggle<cr>
+
 
 " enable 256 color mode so editing in the terminal isn't
 " quite so annoying.
@@ -312,3 +353,6 @@ nnoremap <S-F3> :if &go=~#'r' <Bar>set go-=r <Bar>else <Bar>set go+=r <Bar>endif
 " show tabs visually
 set list
 set listchars=tab:>-
+
+" force .sh files to be in unix format. bash can't handle cr lf..
+au BufRead,BufNewFile *.sh set fileformat=unix
